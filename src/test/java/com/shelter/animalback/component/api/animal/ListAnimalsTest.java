@@ -1,4 +1,4 @@
-package com.shelter.animalback.component.api;
+package com.shelter.animalback.component.api.animal;
 
 import com.shelter.animalback.model.AnimalDao;
 import com.shelter.animalback.repository.AnimalRepository;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
-public class ListAnimalTest {
+public class ListAnimalsTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -55,7 +55,7 @@ public class ListAnimalTest {
     public void listAnimalsWithRightSchema() {
         var response = mockMvc.perform(get("/animals")).andReturn().getResponse();
 
-        var jsonSchema = new JSONObject(new JSONTokener(ListAnimalTest.class.getResourceAsStream("/animals.json")));
+        var jsonSchema = new JSONObject(new JSONTokener(ListAnimalsTest.class.getResourceAsStream("/animals.json")));
         var jsonArray = new JSONArray(response.getContentAsString());
 
         var schema = SchemaLoader.load(jsonSchema);

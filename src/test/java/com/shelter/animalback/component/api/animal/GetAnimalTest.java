@@ -1,4 +1,4 @@
-package com.shelter.animalback.component.api;
+package com.shelter.animalback.component.api.animal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shelter.animalback.domain.Animal;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
-public class AnimalDetailTest {
+public class GetAnimalTest {
 
     @Autowired
     private MockMvc mockMvc;
