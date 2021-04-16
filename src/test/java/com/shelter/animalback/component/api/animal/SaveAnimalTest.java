@@ -23,7 +23,9 @@ import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        properties = { "spring.config.additional-location=classpath:component-test.yml"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureMockMvc
 public class SaveAnimalTest {
@@ -61,7 +63,7 @@ public class SaveAnimalTest {
         assertThat(animalResponse.getBreed(), equalTo("Mestizo"));
         assertThat(animalResponse.getGender(), equalTo("Female"));
         assertThat(animalResponse.isVaccinated(), equalTo(true));
-        /*
+
         assertThat(animalResponse.getId(), notNullValue());
 
         //Database asserts
@@ -74,7 +76,7 @@ public class SaveAnimalTest {
         assertThat(animalDB.getBreed(), equalTo("Mestizo"));
         assertThat(animalDB.getGender(), equalTo("Female"));
         assertThat(animalDB.isVaccinated(), equalTo(true));
-         */
+
     }
 
     @Getter
