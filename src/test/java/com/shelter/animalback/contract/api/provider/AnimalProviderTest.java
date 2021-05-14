@@ -24,11 +24,10 @@ import java.util.ArrayList;
 @Provider("AnimalSehlterBack")
 @PactBroker(url = "https://jsebastianc.pactflow.io"
         , authentication = @PactBrokerAuth(token = "CFBtWpPptvIw_7Fs6exn4w"))
-public class ListAnimalTest {
+public class AnimalProviderTest {
 
     @Mock
     private AnimalService animalService;
-
 
     @InjectMocks
     private AnimalController animalController;
@@ -50,14 +49,30 @@ public class ListAnimalTest {
     @State("has animals")
     public void verifyListAnimals() {
         Animal animal = new Animal();
-        animal.setName("Bigotes");
-        animal.setBreed("Siames");
-        animal.setGender("Male");
-        animal.setVaccinated(false);
+        animal.setName("Manchas");
+        animal.setBreed("Bendali");
+        animal.setGender("Female");
+        animal.setVaccinated(true);
 
         ArrayList<Animal> animals = new ArrayList<Animal>();
         animals.add(animal);
 
         Mockito.when(animalService.getAll()).thenReturn(animals);
+    }
+
+    @State("delete an animal")
+    public void verifyDeleteAnimal() {
+      Mockito.doNothing().when(animalService).delete(Mockito.anyString());
+    }
+
+    @State("create an animal")
+    public void verifyCreateAnimal(){
+        Animal animal = new Animal();
+        animal.setName("Other Animal");
+        animal.setBreed("Bendali");
+        animal.setGender("Female");
+        animal.setVaccinated(true);
+
+        Mockito.when(animalService.save(Mockito.any(Animal.class))).thenReturn(animal);
     }
 }
